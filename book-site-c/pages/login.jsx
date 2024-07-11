@@ -1,10 +1,10 @@
 import React from 'react'
-
+import Header from '../src/components/Header/Header'
 const Login = () => {
   return (
-    <div>
-      this is logini
-    </div>
+    <>
+     <Header/>
+    </>
   )
 }
 
