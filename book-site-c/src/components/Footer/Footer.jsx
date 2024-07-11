@@ -52,7 +52,7 @@ const Footer = () => {
         
 }} >
         <Box sx={{ '& > *': { marginBottom: 1, 
-          marginX: 2  } }}>
+          marginX: 2  }, paddingLeft:0.5 }}>
             <Typography>company-email@gmail.com</Typography>
             <Typography>+91-0000-000000</Typography>
             <Typography>+91-0000-000000</Typography>
