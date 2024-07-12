@@ -6,17 +6,14 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
+import MoreIcon from '@mui/icons-material/MoreVert';
+
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -47,7 +44,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -57,7 +53,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function Header({ sx }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -98,8 +94,7 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      {/* buttons for profile and dashboard below */}
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem> 
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>Dashboard</MenuItem>
     </Menu>
   );
@@ -121,64 +116,46 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      {/* sm version ofaccount icon starts below */}
-      <Box sx={{paddingRight:2 }}>
-      <MenuItem>
-        <IconButton size="large" 
-         color="inherit"
-         >
-          
+      <Box sx={{ paddingRight: 2 }}>
+        <MenuItem>
+          <IconButton size="large" color="inherit">
             <HomeIcon />
-          
-        </IconButton>
-        <p>Home</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
-          // aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          {/* <Badge badgeContent={17} color="error"> */}
+          </IconButton>
+          <p>Home</p>
+        </MenuItem>
+        <MenuItem>
+          <IconButton size="large" color="inherit">
             <StoreIcon />
-          {/* </Badge> */}
-        </IconButton>
-        <p>Store</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
+          </IconButton>
+          <p>Store</p>
+        </MenuItem>
+        <MenuItem onClick={handleProfileMenuOpen}>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+          <p>Profile</p>
+        </MenuItem>
       </Box>
     </Menu>
   );
-  // this is the md version
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{bgcolor:'#BF5A36'}}>
+      <AppBar position="static" sx={{ bgcolor: '#BF5A36', ...sx }}>
         <Toolbar>
-          {/* <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton> */}
           <Typography
-            // variant="h6"
-            // noWrap
-            // component="h3"
-            sx={{ display: { xs: 'none', sm: 'block' }, fontFamily:'monospace', fontWeight:700, letterSpacing:'0.3rem' }}
+            sx={{
+              display: { xs: 'none', sm: 'block' },
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '0.3rem',
+            }}
           >
             BookChor
           </Typography>
@@ -192,20 +169,12 @@ export default function PrimarySearchAppBar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
-          
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-             
-                <HomeIcon />  
-             
+            <IconButton size="large" color="inherit">
+              <HomeIcon />
             </IconButton>
-            <IconButton
-              size="large"
-              color="inherit"
-            >
-              
-              <StoreIcon/>
-              
+            <IconButton size="large" color="inherit">
+              <StoreIcon />
             </IconButton>
             <IconButton
               size="large"
