@@ -3,8 +3,9 @@ import React from 'react'
 const Home = () => {
   return (
     <>
-      <h1>this is Home</h1>
-      <h2>Folder name changes</h2>
+      <h1 className='bg-slate-900 text-8xl '>this is home</h1>
+      <button className="bg-red-500 hover:bg-red-700 ...">Button</button>
+
     </>
   )
 }
