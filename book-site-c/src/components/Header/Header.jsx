@@ -101,6 +101,7 @@ export default function PrimarySearchAppBar() {
       {/* buttons for profile and dashboard below */}
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem> 
       <MenuItem onClick={handleMenuClose}>Dashboard</MenuItem>
+ 
     </Menu>
   );
 
@@ -180,7 +181,7 @@ export default function PrimarySearchAppBar() {
             // component="h3"
             sx={{ display: { xs: 'none', sm: 'block' }, fontFamily:'monospace', fontWeight:700, letterSpacing:'0.3rem' }}
           >
-            BookChor
+            Booksite
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Search>
