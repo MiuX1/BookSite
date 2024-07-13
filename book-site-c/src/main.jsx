@@ -9,6 +9,7 @@ import Marketplace from '../pages/Marketplace/Marketplace.jsx'
 import './App.css'
 
 
+
 const router = createBrowserRouter(
   createRoutesFromElements(
    <>
@@ -21,9 +22,6 @@ const router = createBrowserRouter(
    </Route>
    <Route path='/login' element={<Login/>}></Route>
    
-
-
-   
   </>
    
   )
@@ -32,5 +30,6 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RouterProvider router={router}/>
+
   </React.StrictMode>,
 )
