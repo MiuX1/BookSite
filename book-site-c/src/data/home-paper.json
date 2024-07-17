@@ -1,0 +1,26 @@
+[
+    {"name":"Book1",
+     "author":"Author1", 
+     "price":"$100"
+    },
+    {"name":"Book2",
+     "author":"Author2", 
+     "price":"$56"
+    },
+    {"name":"Book3",
+     "author":"Author3", 
+     "price":"$132"
+    },
+    {"name":"Book4",
+     "author":"Author4", 
+     "price":"$567"
+    },
+    {"name":"Book5",
+     "author":"Author5", 
+     "price":"$147"
+    },
+    {"name":"Book6",
+     "author":"Author6", 
+     "price":"$1320"
+    }
+]
