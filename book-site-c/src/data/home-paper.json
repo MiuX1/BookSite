@@ -2,26 +2,31 @@
     {"name":"Book1",
      "author":"Author1", 
      "price":"$100",
-     "img":"/"
+     "img":"./src/media/cat.jpg"
     },
     {"name":"Book2",
      "author":"Author2", 
-     "price":"$56"
+     "price":"$56",
+     "img":"./src/media/cat.jpg"
     },
     {"name":"Book3",
      "author":"Author3", 
-     "price":"$132"
+     "price":"$132",
+     "img":"./src/media/cat.jpg"
     },
     {"name":"Book4",
      "author":"Author4", 
-     "price":"$567"
+     "price":"$567",
+     "img":"./src/media/cat.jpg"
     },
     {"name":"Book5",
      "author":"Author5", 
-     "price":"$147"
+     "price":"$147",
+     "img":"./src/media/cat.jpg"
     },
     {"name":"Book6",
      "author":"Author6", 
-     "price":"$1320"
+     "price":"$1320",
+     "img":"./src/media/cat.jpg"
     }
 ]
