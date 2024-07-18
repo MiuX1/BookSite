@@ -148,7 +148,7 @@ export default function Header({ sx }) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ bgcolor: "#BF5A36", ...sx }}>
+      <AppBar position="fixed" sx={{ bgcolor: "#BF5A36", ...sx }}>
         <Toolbar>
           <Typography
             sx={{

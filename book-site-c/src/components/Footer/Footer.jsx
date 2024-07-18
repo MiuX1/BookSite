@@ -19,7 +19,7 @@ const Footer = () => {
     paddingTop:1.5, 
     width:'full', 
     height:'auto',
-    position:'fixed',
+    position:'relative',
     bottom:0,
     boxShadow:'5',
     bgcolor:'#BF5A36',

@@ -7,10 +7,11 @@ function Home() {
   return (
     <Box sx={{
       bgcolor: 'white',
-      marginX: '5%',
-      marginY: '3%',
+      margin: '5%',
+      // marginY: '5%',
       borderRadius: 2,
       minHeight: '100vh'
+
     }}>
       <Box
         sx={{
