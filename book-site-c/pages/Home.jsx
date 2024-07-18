@@ -6,11 +6,6 @@ function FullHeightLayout() {
     'Hot Genre', 'Best Sellers', 'New Releases', 'Gay Romance'];
   
   return (
-<<<<<<< HEAD
-    <>
-    <h1 className="text-4xl p-10  m-10">This is home-- on process</h1>
-      
-=======
     <Container sx={{ bgcolor: 'gray', 
     minHeight: '100vh',
     display:'flex',
@@ -67,7 +62,6 @@ function FullHeightLayout() {
               {name}
             </Button>
           ))}
->>>>>>> cae3260eb1252e07c50dd10117f7ea45803310f4
 
         </Box>
         <Box sx={{marginTop:2,
