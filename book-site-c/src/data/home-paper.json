@@ -1,7 +1,8 @@
 [
     {"name":"Book1",
      "author":"Author1", 
-     "price":"$100"
+     "price":"$100",
+     "img":"/"
     },
     {"name":"Book2",
      "author":"Author2", 
