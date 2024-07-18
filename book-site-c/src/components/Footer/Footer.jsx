@@ -19,6 +19,7 @@ const Footer = () => {
     paddingTop:1.5, 
     width:'full', 
     height:'auto',
+    //changes by suraj from fixed tro relative so that footer stays at the botom--badma kar lena
     position:'fixed',
     bottom:0,
     boxShadow:'5',
