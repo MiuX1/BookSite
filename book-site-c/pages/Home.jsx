@@ -6,72 +6,93 @@ import buttonNames from '../src/data/home-button.json';
 function FullHeightLayout() {
   return (
     <Box sx={{
-      display:'flex',
-      justifyContent:'center',
-    }}>
-    <Box sx={{bgcolor:'grey',
-      height: '80%',
-     width:'80%', 
-    //  marginX:'10%',
-     display: 'flex', 
-     flexDirection: 'column',
-     alignItems:'center',
-     justifyContent:'center' }}>
+      bgcolor: 'red',
+      marginX:'10%',
+      marginY:'3%',
+      height:'100vh'
+      }}>
+    {/* <Box
+      sx={{
+        bgcolor: 'gray',
+        maxHeight: '100%',
+        maxWidth:'100%',
+        marginY:'3%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+      }}
+    > */}
       <Box
         sx={{
           bgcolor: 'black',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          marginTop: '2%',
-          paddingY: '18%',
+          justifyContent:'center',
+          padding: '5%',
           borderRadius: 3,
-          height: '70%',
-          width:'100%'
+          width: '100%', 
+          height:'70%' //to control teh hero section height
         }}
       >
-        <Typography variant='h6' component='h1' color='wheat' marginBottom={20}>
+        <Typography variant='h6' component='h1' color='wheat' marginBottom={4}>
           Hero text here
         </Typography>
+        
         <Box
           sx={{
-            height: '25%',
-            width: '40%',
-            bottom: '20%',
             display: 'flex',
             justifyContent: 'space-between',
-            gap: 2,
+            width: '50%',
+            marginBottom: 4,
+            gap:1
           }}
         >
           <Button sx={{ bgcolor: 'whitesmoke', padding: 2, width: '70%' }}>Buy</Button>
           <Button sx={{ bgcolor: 'whitesmoke', width: '70%', padding: 2 }}>Sell</Button>
         </Box>
-      </Box>
+        </Box>
 
-
-      <Box sx={{ bgcolor: 'green', 
-        height: 'auto',
-        width:'100%',
-        marginY: 2, 
-        display: 'flex', 
-        flexDirection: 'column' }}>
-        <Box sx={{ bgcolor: 'blueviolet', 
-          display: 'flex', 
-          justifyContent: 'space-between', gap: 1 }}>
+      {/* </Box> */}
+      <Box
+        sx={{
+          bgcolor: 'green',
+          height: 400,
+          marginY: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          width: '100%', // Make sure the box is responsive
+        }}
+      >
+        <Box
+          sx={{
+            bgcolor: 'blueviolet',
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center', // Center items when wrapping
+            gap: 1,
+            width: '100%',
+          }}
+        >
           {buttonNames.map((btn, index) => (
-            <Button key={index} 
-            sx={{ bgcolor: 'whitesmoke', 
-            width: '70%', 
-            padding: 2 }}>
+            <Button
+              key={index}
+              sx={{
+                bgcolor: 'whitesmoke',
+                flexBasis: 'calc(50% - 8px)', // Make buttons take up 50% of the container width with some gap
+                marginBottom: 1,
+                padding: 2,
+              }}
+            >
               {btn.name}
             </Button>
           ))}
         </Box>
-        <Grid container spacing={2} sx={{ 
-          marginY:2,
-          flexGrow: 1 }}>
+        <Grid container spacing={2} sx={{ marginY: 2, height: '100%' }}>
           {books.map((book, index) => (
-            <Grid item key={index} xs={12} sm={6} md={4} sx={{ display: 'flex' }}>
+            <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
               <Paper
                 sx={{
                   height: '100%',
@@ -79,10 +100,9 @@ function FullHeightLayout() {
                   flexDirection: 'column',
                   justifyContent: 'space-between',
                   padding: 2,
-                  flexGrow: 1,
                 }}
               >
-                <Box component='img' src={book.img} sx={{ height: '80%', width: '100%', borderRadius: 1 }} />
+                <Box component='img' src={book.img} alt={book.name} sx={{ height: '80%', width: '100%', borderRadius: 1 }} />
                 <Typography variant='h6' component='h1' fontWeight={700} marginTop={2}>
                   {book.name}
                 </Typography>
@@ -99,7 +119,7 @@ function FullHeightLayout() {
         </Grid>
       </Box>
     </Box>
-    </Box>
+    
   );
 }
 
