@@ -4,10 +4,11 @@ import books from '../src/data/home-paper.json';
 import buttonNames from '../src/data/home-button.json';
 
 function Home() {
+  
   return (
     <Box sx={{
       bgcolor: 'white',
-      margin: '5%',
+      margin: '3%',
       // marginY: '5%',
       borderRadius: 2,
       minHeight: '100vh'

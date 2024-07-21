@@ -17,6 +17,8 @@ const router = createBrowserRouter(
       <Route path='' element={<Home/>}/>
       <Route path='/Home' element={<Home/>}/>
       <Route path='/marketplace' element={<Marketplace/>}></Route>
+      {/* <Route path='/profile' element={<Profile/>}></Route> */}
+
       //Agar navbar and footer chahiye toh 
     
    </Route>
