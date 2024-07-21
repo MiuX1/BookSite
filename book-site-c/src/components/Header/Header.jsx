@@ -147,8 +147,7 @@ export default function Header({ sx }) {
   );
 
   return (
-    <Box sx={{ flexGrow: 1, 
-      paddingY:{xs:'7%', sm:'4%', md:'1%'}}}>
+    <Box sx={{ flexGrow: 1, paddingY: { xs: "7%", sm: "4%", md: "1%" } }}>
       <AppBar position="fixed" sx={{ bgcolor: "#BF5A36", ...sx }}>
         <Toolbar>
           <Typography
@@ -173,19 +172,29 @@ export default function Header({ sx }) {
           </Search>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton size="large" color="inherit">
-              {/* <NavLink
+              <NavLink
                 to="/"
                 className={({ isActive }) =>
                   `block py-2 pr-4 pl-3 duration-200 ${
-                    isActive ? "text-orange-700" : "text-gray-900"
+                    isActive ? "text-orange-700" : "text-white"
                   } border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
                 }
-              > */}
+              >
                 <HomeIcon />
-              {/* </NavLink> */}
+              </NavLink>
             </IconButton>
+
             <IconButton size="large" color="inherit">
-              <StoreIcon />
+              <NavLink
+                to="/marketplace"
+                className={({ isActive }) =>
+                  `block py-2 pr-4 pl-3 duration-200 ${
+                    isActive ? "text-orange-700" : "text-white"
+                  } border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                }
+              >
+                <StoreIcon />
+              </NavLink>
             </IconButton>
             <IconButton
               size="large"
