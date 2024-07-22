@@ -39,7 +39,7 @@
       "discounted": true
     },
     {
-      "name": "Pride and Prejudice",
+      "name": "DBMS",
       "author": "Jane Austen",
       "price": "$8.99",
       "img": "./src/media/cat.jpg",
@@ -52,11 +52,11 @@
       "discounted": true
     },
     {
-      "name": "Moby-Dick",
+      "name": "Science",
       "author": "Herman Melville",
       "price": "$11.99",
       "img": "./src/media/cat.jpg",
-      "category": "Biography",
+      "category": "Non-Fiction",
       "rating": 3.0,
       "newArrival": true,
       "trending": true,

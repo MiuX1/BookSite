@@ -17,7 +17,8 @@ import buttonNames from "../../src/data/home-button.json";
 import HoverRating from "../../src/components/Rating/Rating";
 
 function Marketplace() {
-  const [search, setSearch] = useState("");
+  const [searchTitle, setSearchTitle] = useState("");
+  const [searchAuthor, setSearchAuthor] = useState("");
   const [category, setCategory] = useState("");
   const [filters, setFilters] = useState({
     newArrivals: false,
@@ -35,7 +36,10 @@ function Marketplace() {
   };
 
   const filteredBooks = books.filter((book) => {
-    const matchesSearch = search.toLowerCase() === "" || book.name.toLowerCase().includes(search) || book.author.toLowerCase().includes(search);
+    const matchesTitle =
+      searchTitle.toLowerCase() === "" || book.name.toLowerCase().includes(searchTitle.toLowerCase());
+    const matchesAuthor =
+      searchAuthor.toLowerCase() === "" || book.author.toLowerCase().includes(searchAuthor.toLowerCase());
     const matchesCategory = category === "" || book.category === category;
     const matchesFilters =
       (!filters.newArrivals || book.newArrival) &&
@@ -44,7 +48,7 @@ function Marketplace() {
       (!filters.bestSellers || book.bestSeller) &&
       (!filters.discounted || book.discounted);
 
-    return matchesSearch && matchesCategory && matchesFilters;
+    return matchesTitle && matchesAuthor && matchesCategory && matchesFilters;
   });
 
   return (
@@ -76,21 +80,6 @@ function Marketplace() {
             marginBottom: 2,
           }}
         >
-          {/* <TextField
-            select
-            label="Category"
-            variant="outlined"
-            sx={{ minWidth: 240 }}
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            defaultValue=""
-          >
-            {buttonNames.map((btn, index) => (
-              <MenuItem key={index} value={btn.name}>
-                {btn.name}
-              </MenuItem>
-            ))}
-          </TextField> */}
           <TextField
             select
             label="Category"
@@ -110,14 +99,14 @@ function Marketplace() {
           </TextField>
 
           <TextField
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => setSearchTitle(e.target.value)}
             label="Search by Title"
             variant="outlined"
             sx={{ minWidth: 240 }}
           />
           <TextField
-            onChange={(e) => setSearch(e.target.value)}
-            label="Author"
+            onChange={(e) => setSearchAuthor(e.target.value)}
+            label="Search by Author"
             variant="outlined"
             sx={{ minWidth: 240 }}
           />
@@ -160,67 +149,68 @@ function Marketplace() {
         </Box>
       </Box>
 
-      <Grid container spacing={2}>
-        {filteredBooks.map((book, index) => (
-          <Grid item key={index} xs={12} sm={6} md={4} lg={4}>
-            <Paper
-              sx={{
-                boxShadow: 10,
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                padding: 2,
-                "& > *": {
-                  paddingBottom: 1,
-                },
-              }}
-            >
-              <Box
-                component="img"
-                src={book.img}
-                alt={book.name}
+      {filteredBooks.length === 0 ? (
+        <Typography variant="h6" component="h2" textAlign="center">
+          Not Found
+        </Typography>
+      ) : (
+        <Grid container spacing={2}>
+          {filteredBooks.map((book, index) => (
+            <Grid item key={index} xs={12} sm={6} md={4} lg={4}>
+              <Paper
                 sx={{
-                  height: "80%",
-                  width: "100%",
-                  padding: 0,
-                  borderRadius: 1,
-                }}
-              />
-              <Typography
-                variant="h6"
-                component="h1"
-                fontWeight={700}
-                marginTop={2}
-              >
-                {book.name}
-              </Typography>
-              <Typography variant="subtitle1" fontWeight={400}>
-                {book.author}
-              </Typography>
-              <Typography variant="h5" fontWeight={700} paddingBottom={0.5}>
-                {book.price}
-              </Typography>
-              <HoverRating value={book.rating} readOnly={true} />
-              <Button
-                sx={{
-                  backgroundColor: "#1b77d2",
-                  color: "whitesmoke",
-                  border: "solid",
-                  height: "auto",
-                  width: "auto",
-                  paddingY: 1,
-                  "&:hover": {
-                    color: "#1b77d2",
+                  boxShadow: 10,
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  padding: 2,
+                  "& > *": {
+                    paddingBottom: 1,
                   },
                 }}
               >
-                Buy now
-              </Button>
-            </Paper>
-          </Grid>
-        ))}
-      </Grid>
+                <Box
+                  component="img"
+                  src={book.img}
+                  alt={book.name}
+                  sx={{
+                    height: "80%",
+                    width: "100%",
+                    padding: 0,
+                    borderRadius: 1,
+                  }}
+                />
+                <Typography variant="h6" component="h1" fontWeight={700} marginTop={2}>
+                  {book.name}
+                </Typography>
+                <Typography variant="subtitle1" fontWeight={400}>
+                  {book.author}
+                </Typography>
+                <Typography variant="h5" fontWeight={700} paddingBottom={0.5}>
+                  {book.price}
+                </Typography>
+                <HoverRating value={book.rating} readOnly={true} />
+                <Button
+                  sx={{
+                    backgroundColor: "#1b77d2",
+                    color: "whitesmoke",
+                    border: "solid",
+                    height: "auto",
+                    width: "auto",
+                    paddingY: 1,
+                    "&:hover": {
+                      color: "#1b77d2",
+                    },
+                  }}
+                >
+                  Buy now
+                </Button>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </Container>
   );
 }
