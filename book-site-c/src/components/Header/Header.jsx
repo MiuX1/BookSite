@@ -102,6 +102,7 @@ export default function Header({ sx }) {
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
+    //mobile view
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
@@ -117,14 +118,15 @@ export default function Header({ sx }) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+
       <Box sx={{ paddingRight: 2 }}>
-        <MenuItem>
-          <IconButton size="large" color="inherit">
+        <MenuItem component={NavLink} to="/">
+          <IconButton size="large" color="inherit" >
             <HomeIcon />
           </IconButton>
           <p>Home</p>
         </MenuItem>
-        <MenuItem>
+        <MenuItem component={NavLink} to="/marketplace">
           <IconButton size="large" color="inherit">
             <StoreIcon />
           </IconButton>
@@ -147,6 +149,7 @@ export default function Header({ sx }) {
   );
 
   return (
+    // desktop view
     <Box sx={{ flexGrow: 1, paddingY: { xs: "7%", sm: "4%", md: "1%" } }}>
       <AppBar position="fixed" sx={{ bgcolor: "#BF5A36", ...sx }}>
         <Toolbar>
