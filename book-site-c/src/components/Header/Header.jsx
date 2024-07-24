@@ -13,7 +13,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
 import StoreIcon from "@mui/icons-material/Store";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -147,8 +147,7 @@ export default function Header({ sx }) {
   );
 
   return (
-    <Box sx={{ flexGrow: 1, 
-      paddingY:{xs:'7%', sm:'4%', md:'1%'}}}>
+    <Box sx={{ flexGrow: 1, paddingY: { xs: "7%", sm: "4%", md: "1%" } }}>
       <AppBar position="fixed" sx={{ bgcolor: "#BF5A36", ...sx }}>
         <Toolbar>
           <Typography
@@ -172,32 +171,11 @@ export default function Header({ sx }) {
             />
           </Search>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton size="large" color="inherit">
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  `block py-2 pr-4 pl-3 duration-200 ${
-                    isActive ? "text-orange-700" : "text-white-900"
-                  } border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                }
-              >
-                <HomeIcon />
-              </NavLink>
-
+            <IconButton size="large" color="inherit" component={NavLink} to="/">
+              <HomeIcon />
             </IconButton>
-
-            <IconButton size="large" color="inherit">
-            <NavLink
-                to="/marketplace"
-                className={({ isActive }) =>
-                  `block py-2 pr-4 pl-3 duration-200 ${
-                    isActive ? "text-orange-700" : "text-white"
-                  } border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                }
-              > <StoreIcon />
-
-              </NavLink>
-             
+            <IconButton size="large" color="inherit" component={NavLink} to="/marketplace">
+              <StoreIcon />
             </IconButton>
             <IconButton
               size="large"
