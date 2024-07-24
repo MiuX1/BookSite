@@ -150,8 +150,10 @@ export default function Header({ sx }) {
 
   return (
     // desktop view
-    <Box sx={{ flexGrow: 1, paddingY: { xs: "7%", sm: "4%", md: "1%" } }}>
-      <AppBar position="fixed" sx={{ bgcolor: "#BF5A36", ...sx }}>
+    <Box sx={{ flexGrow: 1, 
+      // paddingY: { xs: "7%", sm: "4%", md: "1%" } 
+    }}>
+      <AppBar position="static" sx={{ bgcolor: "#BF5A36", ...sx }}>
         <Toolbar>
           <Typography
             sx={{

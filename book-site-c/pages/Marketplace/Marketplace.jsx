@@ -52,7 +52,7 @@ function Marketplace() {
   });
 
   return (
-    <Container maxWidth="lg" sx={{ marginY: 4 }}>
+    <Container maxWidth="lg" sx={{ marginY: 5 }}>
       <Box
         sx={{
           display: "flex",
