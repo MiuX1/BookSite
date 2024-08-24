@@ -30,7 +30,7 @@ const Profile = () => {
     phone: '(239) 816-9029',
   });
 
-  const [orders, setOrders] = useState([
+  const [bookListed, setBookListed] = useState([
     { id: 1, title: '1984', author: 'George Orwell', price: '$14.00', image: 'https://via.placeholder.com/150', status: 'Shipped' },
     { id: 2, title: 'To Kill a Mockingbird', author: 'Harper Lee', price: '$12.49', image: 'https://via.placeholder.com/150', status: 'Processing' },
   ]);
@@ -46,13 +46,13 @@ const Profile = () => {
     handleEditClose();
   };
 
-  const handleRemoveOrder = (id) => {
-    setOrders(orders.filter(order => order.id !== id));
+  const handleRemoveBookListed = (id) => {
+    setBookListed(bookListed.filter(book => book.id !== id));
   };
 
   return (
     <Container maxWidth="lg">
-      <Box sx={{ mt: 4 }}>
+      <Box sx={{ mt: 4,mb:2, bgcolor: '#f4f6f9', p: 3 }}>
         <Grid container spacing={4}>
           {/* Left Panel */}
           <Grid item xs={12} md={4}>
@@ -87,37 +87,6 @@ const Profile = () => {
 
           {/* Right Panel - Main Content */}
           <Grid item xs={12} md={8}>
-            {/* Orders Section */}
-            <Paper elevation={3} sx={{ p: 2, mb: 2 }}>
-              <Typography variant="h6" sx={{ mb: 2 }}>
-                Orders
-              </Typography>
-              <Grid container spacing={2}>
-                {orders.map(order => (
-                  <Grid item xs={12} sm={6} key={order.id}>
-                    <Card sx={{ display: 'flex', alignItems: 'center' }}>
-                      <CardMedia
-                        component="img"
-                        sx={{ width: 100 }}
-                        image={order.image}
-                        alt={order.title}
-                      />
-                      <CardContent sx={{ flex: '1 0 auto' }}>
-                        <Typography variant="subtitle1">{order.title}</Typography>
-                        <Typography variant="body2" color="text.secondary">{order.author}</Typography>
-                        <Typography variant="body2" color="text.secondary">{order.price}</Typography>
-                        <Typography variant="body2" color="text.secondary">Status: {order.status}</Typography>
-                      </CardContent>
-                      <IconButton onClick={() => handleRemoveOrder(order.id)}>
-                        <Delete color="error" />
-                      </IconButton>
-                    </Card>
-                  </Grid>
-                ))}
-              </Grid>
-            </Paper>
-
-          
             {/* Add to Cart Section */}
             <Paper elevation={3} sx={{ p: 2, mb: 2 }}>
               <Typography variant="h6" sx={{ mb: 2 }}>
@@ -126,18 +95,38 @@ const Profile = () => {
               {/* Add the list of books in the user's cart here */}
             </Paper>
 
-
-              {/* Books Added Section */}
-              <Paper elevation={3} sx={{ p: 2, mb: 2 }}>
+            {/* Book Listed Section */}
+            <Paper elevation={3} sx={{ p: 2, mb: 2 }}>
               <Typography variant="h6" sx={{ mb: 2 }}>
-                Books Listed
+                Book Listed
               </Typography>
-              {/* Add the list of books the user has added here */}
+              <Grid container spacing={2}>
+                {bookListed.map(book => (
+                  <Grid item xs={12} sm={6} key={book.id}>
+                    <Card sx={{ display: 'flex', alignItems: 'center' }}>
+                      <CardMedia
+                        component="img"
+                        sx={{ width: 100 }}
+                        image={book.image}
+                        alt={book.title}
+                      />
+                      <CardContent sx={{ flex: '1 0 auto' }}>
+                        <Typography variant="subtitle1">{book.title}</Typography>
+                        <Typography variant="body2" color="text.secondary">{book.author}</Typography>
+                        <Typography variant="body2" color="text.secondary">{book.price}</Typography>
+                        <Typography variant="body2" color="text.secondary">Status: {book.status}</Typography>
+                      </CardContent>
+                      <IconButton onClick={() => handleRemoveBookListed(book.id)}>
+                        <Delete color="error" />
+                      </IconButton>
+                    </Card>
+                  </Grid>
+                ))}
+              </Grid>
             </Paper>
 
-
             {/* List a Book Section */}
-            <Paper elevation={3} sx={{ p: 2, textAlign: 'center' }}>
+            <Paper elevation={3} sx={{ p: 2, textAlign: 'center', mb: 2 }}>
               <Button variant="contained" color="primary" startIcon={<AddCircleOutline />} fullWidth>
                 List a Book
               </Button>

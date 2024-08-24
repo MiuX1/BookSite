@@ -9,6 +9,7 @@ import Marketplace from '../pages/Marketplace/Marketplace.jsx'
 import Selling from '../pages/Selling/Selling.jsx'
 import Product from '../pages/Product/Product.jsx'
 import Profile from '../pages/Profile/Profile.jsx'
+// import Cart from '../pages/cart/Cart.jsx'
 import './App.css'
 
 
@@ -23,6 +24,8 @@ const router = createBrowserRouter(
       <Route path='/Selling' element={<Selling/>}></Route>
       <Route path='/Product' element={<Product/>}></Route>
       <Route path='/profile' element={<Profile/>}></Route>
+      {/* <Route path='/cart' element={<Cart/>}></Route> */}
+
 
       //Agar navbar and footer chahiye toh 
     
