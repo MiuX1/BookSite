@@ -8,6 +8,7 @@ import Login from '../pages/Login.jsx'
 import Marketplace from '../pages/Marketplace/Marketplace.jsx'
 import Selling from '../pages/Selling/Selling.jsx'
 import Product from '../pages/Product/Product.jsx'
+import Profile from '../pages/Profile/Profile.jsx'
 import './App.css'
 
 
@@ -21,7 +22,7 @@ const router = createBrowserRouter(
       <Route path='/Marketplace' element={<Marketplace/>}></Route>
       <Route path='/Selling' element={<Selling/>}></Route>
       <Route path='/Product' element={<Product/>}></Route>
-      {/* <Route path='/profile' element={<Profile/>}></Route> */}
+      <Route path='/profile' element={<Profile/>}></Route>
 
       //Agar navbar and footer chahiye toh 
     
