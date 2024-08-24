@@ -13,7 +13,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
 import StoreIcon from "@mui/icons-material/Store";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -102,6 +102,7 @@ export default function Header({ sx }) {
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
+    //mobile view
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
@@ -117,14 +118,15 @@ export default function Header({ sx }) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+
       <Box sx={{ paddingRight: 2 }}>
-        <MenuItem>
-          <IconButton size="large" color="inherit">
+        <MenuItem component={NavLink} to="/">
+          <IconButton size="large" color="inherit" >
             <HomeIcon />
           </IconButton>
           <p>Home</p>
         </MenuItem>
-        <MenuItem>
+        <MenuItem component={NavLink} to="/marketplace">
           <IconButton size="large" color="inherit">
             <StoreIcon />
           </IconButton>
@@ -147,10 +149,11 @@ export default function Header({ sx }) {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-    {/* //changes by suraj absolute to fixed so that app bar is fixed and doesnot move-- badma kar lena */}
-
-      <AppBar position="fixed" sx={{ bgcolor: "#BF5A36", ...sx }}>
+    // desktop view
+    <Box sx={{ flexGrow: 1, 
+      // paddingY: { xs: "7%", sm: "4%", md: "1%" } 
+    }}>
+      <AppBar position="static" sx={{ bgcolor: "#BF5A36", ...sx }}>
         <Toolbar>
           <Typography
             sx={{
@@ -173,19 +176,10 @@ export default function Header({ sx }) {
             />
           </Search>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton size="large" color="inherit">
-              {/* <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  `block py-2 pr-4 pl-3 duration-200 ${
-                    isActive ? "text-orange-700" : "text-gray-900"
-                  } border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                }
-              > */}
-                <HomeIcon />
-              {/* </NavLink> */}
+            <IconButton size="large" color="inherit" component={NavLink} to="/">
+              <HomeIcon />
             </IconButton>
-            <IconButton size="large" color="inherit">
+            <IconButton size="large" color="inherit" component={NavLink} to="/marketplace">
               <StoreIcon />
             </IconButton>
             <IconButton
