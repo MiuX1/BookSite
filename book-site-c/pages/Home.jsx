@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Container, Box, Button, Typography, Paper, Grid } from '@mui/material';
+import { Container, Box, Button, Typography, Paper, Grid, MenuItem } from '@mui/material';
 import books from '../src/data/home-paper.json';
 import buttonNames from '../src/data/home-button.json';
+import { NavLink } from 'react-router-dom';
 
 function Home() {
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -104,7 +105,9 @@ function Home() {
             },
           }}
         >
+
           <Button
+          component={NavLink} to="/marketplace"
             sx={{
               bgcolor: 'whitesmoke',
               padding: 2,
@@ -118,6 +121,7 @@ function Home() {
             Buy
           </Button>
           <Button
+          component={NavLink} to="/selling"
             sx={{
               bgcolor: 'whitesmoke',
               width: '70%',

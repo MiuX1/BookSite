@@ -95,7 +95,7 @@ export default function Header({ sx }) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem component={NavLink} to="/profile" onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>Dashboard</MenuItem>
     </Menu>
   );

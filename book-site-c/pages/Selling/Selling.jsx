@@ -213,6 +213,7 @@ const Selling = () => {
         </Grid>
         <Grid item xs={12}>
           <FieldGroup
+          type='number'
             label="Your Phone Number"
             name="sellerPhoneNumber"
             value={formValues.sellerPhoneNumber}
@@ -221,6 +222,7 @@ const Selling = () => {
         </Grid>
         <Grid item xs={12}>
           <FieldGroup
+          type='number'
             label="Pin Code"
             name="pinCode"
             value={formValues.pinCode}
