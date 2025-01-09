@@ -86,7 +86,7 @@ const Product = () => {
               </Typography>
             </Box>
 
-            {/* Quantity, Add to Cart, and Contact Seller */}
+            {/* Quantity, Add to wishlist, and Contact Seller */}
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
               <IconButton color="primary">
                 <Remove />
@@ -100,7 +100,7 @@ const Product = () => {
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <Button variant="contained" color="primary" sx={{ bgcolor: '#1e88e5', '&:hover': { bgcolor: '#1565c0' }, mb: 2 }}>
-                Add to cart
+                Add to wishlist
               </Button>
               {/* Contact Seller Button */}
               <Button variant="outlined" color="secondary" sx={{ borderColor: '#ff4081', color: '#ff4081', '&:hover': { borderColor: '#f50057', color: '#f50057' } }}>
