@@ -204,7 +204,7 @@ function Marketplace() {
                     },
                   }}
                 >
-                  Buy now
+                  Order now
                 </Button>
               </Paper>
             </Grid>
