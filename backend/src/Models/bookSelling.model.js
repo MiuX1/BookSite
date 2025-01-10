@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 const bookSchema = new Schema(
   {
-    title: {
+    BookTitle: {
       type: String,
       required: true,
       trim: true,
@@ -11,6 +11,18 @@ const bookSchema = new Schema(
       type: String,
       required: true,
       trim: true,
+    },
+    year:{
+        type:Number,
+        required: true,
+    },
+    ISBN: {
+      type: String,
+      required: false,
+      // unique: true,
+    },
+    bookType:{
+      type:String,
     },
     price: {
       type: Number,
@@ -29,11 +41,7 @@ const bookSchema = new Schema(
       type: String,
       required: true,
     },
-    ISBN: {
-      type: String,
-      required: false,
-      // unique: true,
-    },
+  
     seller_id: {
       type: mongoose.Schema.Types.ObjectId, // Reference to the user selling the book
       ref: "User",
