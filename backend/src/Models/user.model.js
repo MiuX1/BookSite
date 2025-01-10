@@ -19,6 +19,7 @@ const userSchema = new Schema(
     },
     user_id: {
       type:  mongoose.Schema.Types.ObjectId,
+      ref: "User",
       required: true,
       unique: true,
     },
@@ -27,11 +28,11 @@ const userSchema = new Schema(
       required: [true, 'Password is required'],
       minlength: 6, // Ensures a minimum length for password
     },
-    buy_sell_select: {
-      type: String,
-      enum: ["buy", "sell"], // Allows only 'buy' or 'sell'
-      required: true,
-    },
+    // buy_sell_select: {
+    //   type: String,
+    //   enum: ["buy", "sell"], // Allows only 'buy' or 'sell'
+    //   required: true,
+    // },
     avatar: {
       type: String,
       default: "", // Avatar URL or file path will be stored here

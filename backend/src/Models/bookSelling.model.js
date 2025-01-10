@@ -19,7 +19,7 @@ const bookSchema = new Schema(
     condition: {
       type: String,
       enum: ["new", "used"],
-      required: true,
+      required: false,
     },
     genre: {
       type: String,
@@ -31,13 +31,13 @@ const bookSchema = new Schema(
     },
     ISBN: {
       type: String,
-      required: true,
-      unique: true,
+      required: false,
+      // unique: true,
     },
     seller_id: {
       type: mongoose.Schema.Types.ObjectId, // Reference to the user selling the book
       ref: "User",
-      required: true,
+      required: false,
     },
     status: {
       type: String,

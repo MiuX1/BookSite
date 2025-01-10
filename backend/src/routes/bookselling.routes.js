@@ -1,7 +1,15 @@
 import { Router } from "express";
 import { bookSelling } from "../controllers/bookSelling.controller.js";
+import { upload } from "../middlewares/multer.middleware.js";
 
-const router = Router()
-router.route("/bookselling").post(bookSelling)
+const router = Router();
 
-export default router
+// Handle POST request for book selling with multiple file uploads
+router.route("/bookselling").post(
+  upload.fields([
+    { name: "images", maxCount: 3 }, // Accept up to 3 files in the "images" field
+  ]),
+  bookSelling
+);
+
+export default router;
