@@ -24,10 +24,13 @@ const Search = styled("div")(({ theme }) => ({
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
+  width: "50%", // Change this to take 50% width on larger screens
+  [theme.breakpoints.down("sm")]: {
+    width: "80%", // Take more space on small screens
+  },
+  [theme.breakpoints.up("md")]: {
     marginLeft: theme.spacing(3),
-    width: "auto",
+    width: "40%", // Centered search bar on larger screens
   },
 }));
 
@@ -49,7 +52,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
-      width: "20ch",
+      width: "100%", // Ensure it stretches the width of the container
     },
   },
 }));
@@ -96,13 +99,11 @@ export default function Header({ sx }) {
       onClose={handleMenuClose}
     >
       <MenuItem component={NavLink} to="/profile" onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Dashboard</MenuItem>
     </Menu>
   );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
-    //mobile view
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
@@ -118,7 +119,6 @@ export default function Header({ sx }) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-
       <Box sx={{ paddingRight: 2 }}>
         <MenuItem component={NavLink} to="/">
           <IconButton size="large" color="inherit" >
@@ -132,7 +132,7 @@ export default function Header({ sx }) {
           </IconButton>
           <p>Store</p>
         </MenuItem>
-        <MenuItem onClick={handleProfileMenuOpen}>
+        <MenuItem component={NavLink} to="/profile">
           <IconButton
             size="large"
             aria-label="account of current user"
@@ -149,24 +149,27 @@ export default function Header({ sx }) {
   );
 
   return (
-    // desktop view
-    <Box sx={{ flexGrow: 1, 
-      // paddingY: { xs: "7%", sm: "4%", md: "1%" } 
-    }}>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ bgcolor: "#BF5A36", ...sx }}>
         <Toolbar>
           <Typography
             sx={{
-              display: { xs: "none", sm: "block" },
+              display: { xs: "block", sm: "block" }, // Show on both mobile and desktop views
               fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: "0.3rem",
+              letterSpacing: "0.2rem",
+              marginRight: 2, // Add margin on the right for spacing
             }}
           >
             Booksite
           </Typography>
+
           <Box sx={{ flexGrow: 1 }} />
-          <Search>
+          <Search
+            sx={{
+              marginLeft: 1, // Add margin to the left for spacing from Booksite title
+            }}
+          >
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -177,19 +180,29 @@ export default function Header({ sx }) {
           </Search>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton size="large" color="inherit" component={NavLink} to="/">
-              <HomeIcon />
+              <Typography
+                sx={{
+                  display: { xs: "none", sm: "block" },
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                }}
+              >Home</Typography>
             </IconButton>
             <IconButton size="large" color="inherit" component={NavLink} to="/marketplace">
-              <StoreIcon />
+              <Typography
+                sx={{
+                  display: { xs: "none", sm: "block" },
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                }}>Shop</Typography>
             </IconButton>
+            {/* Directly link to profile on desktop */}
             <IconButton
               size="large"
               edge="end"
               aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
               color="inherit"
+              component={NavLink} to="/profile" // Direct link
             >
               <AccountCircle />
             </IconButton>

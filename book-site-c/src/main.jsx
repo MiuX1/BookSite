@@ -9,8 +9,9 @@ import Marketplace from '../pages/Marketplace/Marketplace.jsx'
 import Selling from '../pages/Selling/Selling.jsx'
 import Product from '../pages/Product/Product.jsx'
 import Profile from '../pages/Profile/Profile.jsx'
-import Listings from '../pages/Profile/Listings.jsx'
-import Cart from '../pages/Profile/Cart.jsx'
+import Listings from '../pages/Listings/Listings.jsx'
+import Wishlist from '../pages/Wishlist/Wishlist.jsx'
+// import Cart from '../pages/Profile/Cart.jsx'
 import './App.css'
 
 
@@ -24,9 +25,10 @@ const router = createBrowserRouter(
       <Route path='/Marketplace' element={<Marketplace/>}></Route>
       <Route path='/Selling' element={<Selling/>}></Route>
       <Route path='/Product' element={<Product/>}></Route>
+      <Route path="/Product/:productId" element={<Product />}></Route> 
       <Route path='/profile' element={<Profile/>}></Route>
-      <Route path='/cart' element={<Cart/>}></Route>
       <Route path='/listings' element={<Listings/>}></Route>
+      <Route path='/wishlist' element={<Wishlist/>}></Route>
 
 
       //Agar navbar and footer chahiye toh 

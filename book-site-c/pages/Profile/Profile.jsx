@@ -20,6 +20,7 @@ import {
 } from '@mui/material';
 import { Email, Phone, Delete, AddCircleOutline } from '@mui/icons-material';
 import { NavLink } from 'react-router-dom';
+
 const Profile = () => {
   const [editOpen, setEditOpen] = useState(false);
   const [profileData, setProfileData] = useState({
@@ -89,18 +90,22 @@ const Profile = () => {
           <Grid item xs={12} md={8}>
             {/* Add to wishlist Section */}
             <Paper elevation={3} sx={{ p: 2, mb: 2 }}>
-              <Typography variant="h6" sx={{ mb: 2 }}>
-                Cart
+              <Typography 
+              component={NavLink} to="/wishlist"
+              variant="h6" sx={{ mb: 2 }}>
+                My Wishlist
               </Typography>
               {/* Add the list of books in the user's cart here */}
             </Paper>
 
             {/* Book Listed Section */}
             <Paper elevation={3} sx={{ p: 2, mb: 2 }}>
-              <Typography variant="h6" sx={{ mb: 2 }}>
+              <Typography 
+              component={NavLink} to="/listings"
+              variant="h6" sx={{ mb: 2 }}>
                 Book Listed
               </Typography>
-              <Grid container spacing={2}>
+              {/* <Grid container spacing={2}>
                 {bookListed.map(book => (
                   <Grid item xs={12} sm={6} key={book.id}>
                     <Card sx={{ display: 'flex', alignItems: 'center' }}>
@@ -122,17 +127,17 @@ const Profile = () => {
                     </Card>
                   </Grid>
                 ))}
-              </Grid>
+              </Grid> */}
             </Paper>
 
             {/* List a Book Section */}
-            <Paper elevation={3} sx={{ p: 2, textAlign: 'center', mb: 2 }}>
+            {/* <Paper elevation={3} sx={{ p: 2, textAlign: 'center', mb: 2 }}>
               <Button 
               component={NavLink} to="/selling"
               variant="contained" color="primary" startIcon={<AddCircleOutline />} fullWidth>
                 List a Book
               </Button>
-            </Paper>
+            </Paper> */}
           </Grid>
         </Grid>
       </Box>
