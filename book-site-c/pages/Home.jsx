@@ -227,7 +227,7 @@ function Home() {
                     },
                   }}
                 >
-                  Buy now
+                  Order now
                 </Button>
               </Paper>
             </Grid>

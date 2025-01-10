@@ -19,7 +19,7 @@ import {
   TextField,
 } from '@mui/material';
 import { Email, Phone, Delete, AddCircleOutline } from '@mui/icons-material';
-
+import { NavLink } from 'react-router-dom';
 const Profile = () => {
   const [editOpen, setEditOpen] = useState(false);
   const [profileData, setProfileData] = useState({
@@ -87,7 +87,7 @@ const Profile = () => {
 
           {/* Right Panel - Main Content */}
           <Grid item xs={12} md={8}>
-            {/* Add to Cart Section */}
+            {/* Add to wishlist Section */}
             <Paper elevation={3} sx={{ p: 2, mb: 2 }}>
               <Typography variant="h6" sx={{ mb: 2 }}>
                 Cart
@@ -127,7 +127,9 @@ const Profile = () => {
 
             {/* List a Book Section */}
             <Paper elevation={3} sx={{ p: 2, textAlign: 'center', mb: 2 }}>
-              <Button variant="contained" color="primary" startIcon={<AddCircleOutline />} fullWidth>
+              <Button 
+              component={NavLink} to="/selling"
+              variant="contained" color="primary" startIcon={<AddCircleOutline />} fullWidth>
                 List a Book
               </Button>
             </Paper>

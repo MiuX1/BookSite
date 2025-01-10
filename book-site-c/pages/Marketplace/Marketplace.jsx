@@ -15,7 +15,7 @@ import {
 import books from "../../src/data/home-paper.json";
 import buttonNames from "../../src/data/home-button.json";
 import HoverRating from "../../src/components/Rating/Rating";
-
+import { NavLink } from "react-router-dom";
 function Marketplace() {
   const [searchTitle, setSearchTitle] = useState("");
   const [searchAuthor, setSearchAuthor] = useState("");
@@ -192,6 +192,7 @@ function Marketplace() {
                 </Typography>
                 <HoverRating value={book.rating} readOnly={true} />
                 <Button
+                  component={NavLink} to="/product"
                   sx={{
                     backgroundColor: "#1b77d2",
                     color: "whitesmoke",
@@ -204,7 +205,7 @@ function Marketplace() {
                     },
                   }}
                 >
-                  Buy now
+                  Order now
                 </Button>
               </Paper>
             </Grid>
