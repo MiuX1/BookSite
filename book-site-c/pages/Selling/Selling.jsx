@@ -1,618 +1,10 @@
-// import React, { useState } from 'react';
-// import {
-//   Typography, Box, Link, TextField, Button, IconButton, MenuItem, Select, Radio, RadioGroup,
-//   FormControlLabel, InputLabel, FormControl, Grid
-// } from '@mui/material';
-// import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-
-// // import axios from 'axios';  // Import axios for API requests
-
-
-
-
-// const Selling = () => {
-//   const [formValues, setFormValues] = useState({
-//     bookTitle: '',
-//     author: '',
-//     year: '',
-//     ISBN: '',
-//     bookType: '',
-//     bookCondition: 'good',
-//     picture: null,
-//     quantityAvailable: '',
-//     price: '',
-//     additionalInfo: '',
-//     sellerName: '',
-//     address: '',
-//     sellerEmail: '',
-//     sellerPhoneNumber: '',
-//     pinCode: '',
-//   });
-
-//     // Handle form value changes
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormValues((prevValues) => ({
-//       ...prevValues,
-//       [name]: value,
-//     }));
-//   };
-//   // Handle file change (image upload)
-
-//   const handleFileChange = (e) => {
-//     setFormValues((prevValues) => ({
-//       ...prevValues,
-//       picture: e.target.files[0],
-//     }));
-//   };
-//   // Handle book condition change
-
-//   const handleConditionChange = (e) => {
-//     setFormValues((prevValues) => ({
-//       ...prevValues,
-//       bookCondition: e.target.value,
-//     }));
-//   };
-//   // Handle form submission (sending data to backend)
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     console.log(formValues);
-//   };
- 
-//   return (
-//     <Box
-//       component="form"
-//       onSubmit={handleSubmit}
-//       sx={{
-//         display: 'flex',
-//         flexDirection: 'column',
-//         alignItems: 'center',
-//         // bgcolor: '#f5f5f5',
-//         margin: 'auto',
-//         borderRadius: 2,
-//         maxWidth: '80%',
-//         padding: {xs:'4%', sm:'4%', md:'2%'},
-//         // boxShadow: 3,
-//         width: '100%',
-//       }}
-//     >
-//       <Box sx={{ bgcolor: '#4caf50', width: '100%', padding: '1%', textAlign: 'center', mb: 2 }}>
-//         <Typography variant='h6' component='h1' color="#fff">
-//           Become a Seller
-//         </Typography>
-//         <Link href="/" target="_blank" 
-//         color="inherit" underline="hover">
-//           Learn how it works?
-//         </Link>
-//       </Box>
-
-//       <Grid container spacing={2}>
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             label="Book Title"
-//             name="bookTitle"
-//             value={formValues.bookTitle}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             label="Author"
-//             name="author"
-//             value={formValues.author}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             label="Year"
-//             name="year"
-//             value={formValues.year}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             label="ISBN"
-//             name="ISBN"
-//             value={formValues.ISBN}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-
-//         <Grid item xs={12}>
-//           {/* <FieldGroup      (add the genre dropdown here)
-//               label="Book Type"
-//               name="Book Type"
-//               value={formValues.bookType}
-//               onChange={handleChange}
-//             />   */}
-//         </Grid>
-
-//         <Grid item xs={12}>
-//           <Box sx={{ marginY: '1%' }}>
-//             <Typography>Book Condition</Typography>
-//             <RadioGroup
-//               name="bookCondition"
-//               value={formValues.bookCondition}
-//               onChange={handleConditionChange}
-//               row
-//             >
-//               <FormControlLabel value="good" control={<Radio />} label="Good" />
-//               <FormControlLabel value="fair" control={<Radio />} label="Fair" />
-//               <FormControlLabel value="bad" control={<Radio />} label="Bad" />
-//             </RadioGroup>
-//           </Box>
-//         </Grid>
-
-//         <Grid item xs={12}>
-//           <Box sx={{marginY: '1%'}}>
-//             <Typography>Upload Photos</Typography>
-//               <Typography variant="caption" display="block">
-//                 (up to 4 images; Size: 1.5MB max each)
-//               </Typography>
-//             <IconButton component="label">
-//               <input type="file" 
-//               hidden multiple 
-//               onChange={handleFileChange}/>
-//               <AddAPhotoIcon />
-//             </IconButton>
-//           </Box>
-//         </Grid>
-
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             label="Quantity Available (Stock)"
-//             name="quantityAvailable"
-//             type="number"
-//             value={formValues.quantityAvailable}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             label="Price"
-//             name="price"
-//             value={formValues.price}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-
-//         <Grid item xs={12}>
-//           <Box sx={{ marginY: '1%' }}>
-//             <Typography>Additional Info</Typography>
-//             <TextField
-//               name="additionalInfo"
-//               multiline
-//               rows={4}
-//               value={formValues.additionalInfo}
-//               onChange={handleChange}
-//               variant="outlined"
-//               fullWidth
-//               sx={{ bgcolor: '#e0e0e0', borderRadius: '4px' }}
-//             />
-//           </Box>
-//         </Grid>
-
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             label="Your Name"
-//             name="sellerName"
-//             value={formValues.sellerName}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             label="Your Address"
-//             name="address"
-//             value={formValues.address}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             label="Your Email"
-//             name="sellerEmail"
-//             value={formValues.sellerEmail}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-//         <Grid item xs={12}>
-//           <FieldGroup
-//           type='number'
-//             label="Your Phone Number"
-//             name="sellerPhoneNumber"
-//             value={formValues.sellerPhoneNumber}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-//         <Grid item xs={12}>
-//           <FieldGroup
-//           type='number'
-//             label="Pin Code"
-//             name="pinCode"
-//             value={formValues.pinCode}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-
-//         <Grid item xs={12}>
-//           <Box sx={{ 
-//             display:'flex',
-//             justifyContent:'center',
-//             marginY: '1%' }}>
-//             <Button type="submit" variant="contained" color="primary" 
-//             sx={{
-//               width:{sm:'50%',md:'30%'},
-//             }}
-//             >
-//               List Book
-//             </Button>
-//           </Box>
-//         </Grid>
-//       </Grid>
-//     </Box>
-//   );
-// };
-
-// const FieldGroup = ({ label, name, value, onChange, type = "text" }) => (
-//   <Box sx={{ marginY: '1%' }}>
-//     <Typography variant="body1" sx={{ mb: 0.5 }}>
-//       {label}
-//     </Typography>
-//     <TextField
-//       name={name}
-//       value={value}
-//       onChange={onChange}
-//       variant="outlined"
-//       fullWidth
-//       sx={{ bgcolor: '#e0e0e0', borderRadius: '4px' }}
-//       type={type}
-//     />
-//   </Box>
-// );
-
-// export default Selling;
-
-
-
-
-
-// import React, { useState } from 'react';
-// import {
-//   Typography, Box, Link, TextField, Button, IconButton, Grid,
-//   FormControlLabel, Radio, RadioGroup
-// } from '@mui/material';
-// import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-// // import axios from 'axios';  // Import axios for API requests
-
-// const Selling = () => {
-//   const [formValues, setFormValues] = useState({
-//     bookTitle: '',
-//     author: '',
-//     year: '',
-//     ISBN: '',
-//     bookType: '',
-//     bookCondition: 'good',
-//     picture: null,
-//     quantityAvailable: '',
-//     price: '',
-//     additionalInfo: '',
-//     sellerName: '',
-//     address: '',
-//     sellerEmail: '',
-//     sellerPhoneNumber: '',
-//     pinCode: '',
-//   });
-
-//   // Handle form value changes
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormValues((prevValues) => ({
-//       ...prevValues,
-//       [name]: value,
-//     }));
-//   };
-
-//   // Handle file change (image upload)
-//   const handleFileChange = (e) => {
-//     setFormValues((prevValues) => ({
-//       ...prevValues,
-//       picture: e.target.files[0],  // Only single image is being handled
-//     }));
-//   };
-
-//   // Handle book condition change
-//   const handleConditionChange = (e) => {
-//     setFormValues((prevValues) => ({
-//       ...prevValues,
-//       bookCondition: e.target.value,
-//     }));
-//   };
-
-//   // Handle form submission (sending data to backend)
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     const formData = new FormData();
-//     formData.append('title', formValues.bookTitle);
-//     formData.append('author', formValues.author);
-//     formData.append('year', formValues.year);
-//     formData.append('ISBN', formValues.ISBN);
-//     formData.append('bookType', formValues.bookType);
-//     formData.append('bookCondition', formValues.bookCondition);
-//     formData.append('quantityAvailable', formValues.quantityAvailable);
-//     formData.append('price', formValues.price);
-//     formData.append('additionalInfo', formValues.additionalInfo);
-//     formData.append('sellerName', formValues.sellerName);
-//     formData.append('address', formValues.address);
-//     formData.append('sellerEmail', formValues.sellerEmail);
-//     formData.append('sellerPhoneNumber', formValues.sellerPhoneNumber);
-//     formData.append('pinCode', formValues.pinCode);
-
-//  // Validate file size or type if needed
-//  if (formValues.picture) {
-//   const file = formValues.picture;
-//   const maxFileSize = 1.5 * 1024 * 1024; // 1.5MB
-//   const allowedTypes = ['image/jpeg', 'image/png'];
-
-//   if (file.size > maxFileSize) {
-//     alert("File size exceeds the limit of 1.5MB");
-//     return;
-//   }
-
-//   if (!allowedTypes.includes(file.type)) {
-//     alert("Invalid file type. Only JPEG and PNG are allowed.");
-//     return;
-//   }
-
-//   formData.append('images', formValues.picture);
-// }
-
-// try {
-//   const response = await axios.post('http://localhost:8000/api/v1/selling/bookselling', formData, {
-//     headers: {
-//       'Content-Type': 'multipart/form-data',
-//     },
-//   });
-
-//   if (response.status === 200) {
-//     alert('Book listed for sale successfully');
-//   } else {
-//     alert('Error listing the book');
-//   }
-// } catch (error) {
-//   console.error('Error:', error);
-//   alert('Error while uploading book details');
-// }
-// };
-
-//   return (
-//     <Box
-//       component="form"
-//       onSubmit={handleSubmit}
-//       sx={{
-//         display: 'flex',
-//         flexDirection: 'column',
-//         alignItems: 'center',
-//         margin: 'auto',
-//         borderRadius: 2,
-//         maxWidth: '80%',
-//         padding: { xs: '4%', sm: '4%', md: '2%' },
-//         width: '100%',
-//       }}
-//     >
-//       <Box sx={{ bgcolor: '#4caf50', width: '100%', padding: '1%', textAlign: 'center', mb: 2 }}>
-//         <Typography variant='h6' component='h1' color="#fff">
-//           Become a Seller
-//         </Typography>
-//         <Link href="/" target="_blank" color="inherit" underline="hover">
-//           Learn how it works?
-//         </Link>
-//       </Box>
-
-//       <Grid container spacing={2}>
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             label="Book Title"
-//             name="bookTitle"
-//             value={formValues.bookTitle}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             label="Author"
-//             name="author"
-//             value={formValues.author}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             label="Year"
-//             name="year"
-//             value={formValues.year}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             label="ISBN"
-//             name="ISBN"
-//             value={formValues.ISBN}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-
-//         <Grid item xs={12}>
-//           {/* <FieldGroup                  (replace this with drop down list, comtaining the genres)
-//             label="Book Type"
-//             name="bookType"
-//             value={formValues.bookType}
-//             onChange={handleChange}
-//           /> */}
-//         </Grid>
-
-//         <Grid item xs={12}>
-//           <Box sx={{ marginY: '1%' }}>
-//             <Typography>Book Condition</Typography>
-//             <RadioGroup
-//               name="bookCondition"
-//               value={formValues.bookCondition}
-//               onChange={handleConditionChange}
-//               row
-//             >
-//               <FormControlLabel value="good" control={<Radio />} label="Good" />
-//               <FormControlLabel value="fair" control={<Radio />} label="Fair" />
-//               <FormControlLabel value="bad" control={<Radio />} label="Bad" />
-//             </RadioGroup>
-//           </Box>
-//         </Grid>
-
-//         <Grid item xs={12}>
-//           <Box sx={{ marginY: '1%' }}>
-//             <Typography>Upload Photos</Typography>
-//             <Typography variant="caption" display="block">
-//               (up to 4 images; Size: 1.5MB max each)
-//             </Typography>
-//             <IconButton component="label">
-//               <input type="file" hidden multiple onChange={handleFileChange} />
-//               <AddAPhotoIcon />
-//             </IconButton>
-//           </Box>
-//         </Grid>
-
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             label="Quantity Available (Stock)"
-//             name="quantityAvailable"
-//             type="number"
-//             value={formValues.quantityAvailable}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             label="Price"
-//             name="price"
-//             value={formValues.price}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-
-//         <Grid item xs={12}>
-//           <Box sx={{ marginY: '1%' }}>
-//             <Typography>Additional Info</Typography>
-//             <TextField
-//               name="additionalInfo"
-//               multiline
-//               rows={4}
-//               value={formValues.additionalInfo}
-//               onChange={handleChange}
-//               variant="outlined"
-//               fullWidth
-//               sx={{ bgcolor: '#e0e0e0', borderRadius: '4px' }}
-//             />
-//           </Box>
-//         </Grid>
-
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             label="Your Name"
-//             name="sellerName"
-//             value={formValues.sellerName}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             label="Your Address"
-//             name="address"
-//             value={formValues.address}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             label="Your Email"
-//             name="sellerEmail"
-//             value={formValues.sellerEmail}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             type="number"
-//             label="Your Phone Number"
-//             name="sellerPhoneNumber"
-//             value={formValues.sellerPhoneNumber}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-//         <Grid item xs={12}>
-//           <FieldGroup
-//             type="number"
-//             label="Pin Code"
-//             name="pinCode"
-//             value={formValues.pinCode}
-//             onChange={handleChange}
-//           />
-//         </Grid>
-
-//         <Grid item xs={12}>
-//           <Box sx={{
-//             display: 'flex',
-//             justifyContent: 'center',
-//             marginY: '1%'
-//           }}>
-//             <Button type="submit" variant="contained" color="primary"
-//               sx={{
-//                 width: { sm: '50%', md: '30%' },
-//               }}
-//             >
-//               List Book
-//             </Button>
-//           </Box>
-//         </Grid>
-//       </Grid>
-//     </Box>
-//   );
-// };
-
-// // FieldGroup component to handle common text field rendering
-// const FieldGroup = ({ label, name, value, onChange, type = "text" }) => (
-//   <Box sx={{ marginY: '1%' }}>
-//     <Typography variant="body1" sx={{ mb: 0.5 }}>
-//       {label}
-//     </Typography>
-//     <TextField
-//       name={name}
-//       value={value}
-//       onChange={onChange}
-//       variant="outlined"
-//       fullWidth
-//       sx={{ bgcolor: '#e0e0e0', borderRadius: '4px' }}
-//       type={type}
-//     />
-//   </Box>
-// );
-
-// export default Selling;
-
-
 import React, { useState } from 'react';
 import {
   Typography, Box, Link, TextField, Button, IconButton, Grid,
   FormControlLabel, Radio, RadioGroup, MenuItem
 } from '@mui/material';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-// import axios from 'axios';  // Uncomment if using axios for API requests
+import axios from 'axios';
 
 const Selling = () => {
   const [formValues, setFormValues] = useState({
@@ -622,7 +14,7 @@ const Selling = () => {
     ISBN: '',
     bookType: '',
     bookCondition: 'good',
-    picture: null,
+    pictures: [],
     quantityAvailable: '',
     price: '',
     additionalInfo: '',
@@ -633,95 +25,84 @@ const Selling = () => {
     pinCode: '',
   });
 
-  const buttonNames = [
-    { name: 'Fiction' },
-    { name: 'Non-Fiction' },
-    { name: 'Biography' },
-    { name: 'Comics' },
-    { name: 'Science' },
-  ];
+  const [errors, setErrors] = useState({});
+  const buttonNames = ['Fiction', 'Non-Fiction', 'Biography', 'Comics', 'Science'];
 
   // Handle form value changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormValues((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
+    setFormValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
 
-  // Handle file change (image upload)
+  // Handle multiple file uploads
   const handleFileChange = (e) => {
-    setFormValues((prevValues) => ({
-      ...prevValues,
-      picture: e.target.files[0], // Only single image is being handled
-    }));
+    const files = Array.from(e.target.files);
+    const maxFileSize = 1.5 * 1024 * 1024; // 1.5MB
+    const allowedTypes = ['image/jpeg', 'image/png'];
+
+    const validFiles = files.filter((file) => {
+      if (file.size > maxFileSize) {
+        alert(`File "${file.name}" exceeds the size limit of 1.5MB.`);
+        return false;
+      }
+      if (!allowedTypes.includes(file.type)) {
+        alert(`File "${file.name}" is not a valid type (JPEG/PNG only).`);
+        return false;
+      }
+      return true;
+    });
+
+    setFormValues((prevValues) => ({ ...prevValues, pictures: validFiles }));
   };
 
-  // Handle book condition change
-  const handleConditionChange = (e) => {
-    setFormValues((prevValues) => ({
-      ...prevValues,
-      bookCondition: e.target.value,
-    }));
+  // Validate fields before submission
+  const validateFields = () => {
+    const newErrors = {};
+    const requiredFields = [
+      'bookTitle', 'author', 'year', 'price', 'sellerName', 'address', 'sellerEmail', 'pinCode'
+    ];
+
+    requiredFields.forEach((field) => {
+      if (!formValues[field]) newErrors[field] = `${field.replace(/([A-Z])/g, ' $1')} is required`;
+    });
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  // Handle form submission (sending data to backend)
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateFields()) return;
 
     const formData = new FormData();
-    formData.append('title', formValues.bookTitle);
-    formData.append('author', formValues.author);
-    formData.append('year', formValues.year);
-    formData.append('ISBN', formValues.ISBN);
-    formData.append('bookType', formValues.bookType);
-    formData.append('bookCondition', formValues.bookCondition);
-    formData.append('quantityAvailable', formValues.quantityAvailable);
-    formData.append('price', formValues.price);
-    formData.append('additionalInfo', formValues.additionalInfo);
-    formData.append('sellerName', formValues.sellerName);
-    formData.append('address', formValues.address);
-    formData.append('sellerEmail', formValues.sellerEmail);
-    formData.append('sellerPhoneNumber', formValues.sellerPhoneNumber);
-    formData.append('pinCode', formValues.pinCode);
-
-    // Validate file size or type if needed
-    if (formValues.picture) {
-      const file = formValues.picture;
-      const maxFileSize = 1.5 * 1024 * 1024; // 1.5MB
-      const allowedTypes = ['image/jpeg', 'image/png'];
-
-      if (file.size > maxFileSize) {
-        alert('File size exceeds the limit of 1.5MB');
-        return;
-      }
-
-      if (!allowedTypes.includes(file.type)) {
-        alert('Invalid file type. Only JPEG and PNG are allowed.');
-        return;
-      }
-
-      formData.append('images', formValues.picture);
-    }
-
-    try {
-      const response = await axios.post('http://localhost:8000/api/v1/selling/bookselling', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
-      if (response.status === 200) {
-        alert('Book listed for sale successfully');
+    Object.entries(formValues).forEach(([key, value]) => {
+      if (key === 'pictures' && value.length > 0) {
+        value.forEach((file) => formData.append('pictures', file));
       } else {
-        alert('Error listing the book');
+        formData.append(key, value);
       }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Error while uploading book details');
+    });
+
+
+
+  try {
+    const response = await axios.post('http://localhost:8000/api/v1/selling/bookselling', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+  
+    console.log('Response status:', response.status); // Move this line here
+  
+    if (response.status === 200 || response.status === 201) {
+      alert('Book listed for sale successfully!');
+    } else {
+      alert('Error listing the book.');
     }
-  };
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Error while uploading book details.');
+  }};
+ 
 
   return (
     <Box
@@ -748,45 +129,37 @@ const Selling = () => {
       </Box>
 
       <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <FieldGroup
-            label="Book Title"
-            name="bookTitle"
-            value={formValues.bookTitle}
-            onChange={handleChange}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FieldGroup
-            label="Author"
-            name="author"
-            value={formValues.author}
-            onChange={handleChange}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FieldGroup
-            label="Year"
-            name="year"
-            value={formValues.year}
-            onChange={handleChange}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FieldGroup
-            label="ISBN"
-            name="ISBN"
-            value={formValues.ISBN}
-            onChange={handleChange}
-          />
-        </Grid>
+        {[
+          { label: 'Book Title', name: 'bookTitle' },
+          { label: 'Author', name: 'author' },
+          { label: 'Year', name: 'year' },
+          { label: 'ISBN', name: 'ISBN' },
+          { label: 'Quantity Available (Stock)', name: 'quantityAvailable', type: 'number' },
+          { label: 'Price', name: 'price', type: 'number' },
+          { label: 'Your Name', name: 'sellerName' },
+          { label: 'Your Address', name: 'address' },
+          { label: 'Your Email', name: 'sellerEmail' },
+          { label: 'Your Phone Number', name: 'sellerPhoneNumber', type: 'number' },
+          { label: 'Pin Code', name: 'pinCode', type: 'number' },
+        ].map((field, index) => (
+          <Grid item xs={12} key={index}>
+            <FieldGroup
+              label={field.label}
+              name={field.name}
+              value={formValues[field.name]}
+              onChange={handleChange}
+              type={field.type || 'text'}
+              error={errors[field.name]}
+            />
+          </Grid>
+        ))}
 
         <Grid item xs={12}>
           <TextField
             select
             label="Category"
             variant="outlined"
-            sx={{ minWidth: 240 }}
+            fullWidth
             value={formValues.bookType}
             name="bookType"
             onChange={handleChange}
@@ -795,154 +168,77 @@ const Selling = () => {
               <em>None</em>
             </MenuItem>
             {buttonNames.map((btn, index) => (
-              <MenuItem key={index} value={btn.name}>
-                {btn.name}
+              <MenuItem key={index} value={btn}>
+                {btn}
               </MenuItem>
             ))}
           </TextField>
         </Grid>
 
         <Grid item xs={12}>
-          <Box sx={{ marginY: '1%' }}>
-            <Typography>Book Condition</Typography>
-            <RadioGroup
-              name="bookCondition"
-              value={formValues.bookCondition}
-              onChange={handleConditionChange}
-              row
-            >
-              <FormControlLabel value="good" control={<Radio />} label="Good" />
-              <FormControlLabel value="fair" control={<Radio />} label="Fair" />
-              <FormControlLabel value="bad" control={<Radio />} label="Bad" />
-            </RadioGroup>
-          </Box>
+          <Typography>Book Condition</Typography>
+          <RadioGroup
+            name="bookCondition"
+            value={formValues.bookCondition}
+            onChange={(e) =>
+              setFormValues((prevValues) => ({ ...prevValues, bookCondition: e.target.value }))
+            }
+            row
+          >
+            {['good', 'fair', 'bad'].map((condition) => (
+              <FormControlLabel key={condition} value={condition} control={<Radio />} label={condition} />
+            ))}
+          </RadioGroup>
         </Grid>
 
         <Grid item xs={12}>
-          <Box sx={{ marginY: '1%' }}>
-            <Typography>Upload Photos</Typography>
-            <Typography variant="caption" display="block">
-              (up to 4 images; Size: 1.5MB max each)
-            </Typography>
-            <IconButton component="label">
-              <input type="file" hidden multiple onChange={handleFileChange} />
-              <AddAPhotoIcon />
-            </IconButton>
-          </Box>
+          <Typography>Upload Photos</Typography>
+          <Typography variant="caption" display="block">
+            (Up to 4 images; Max size: 1.5MB each)
+          </Typography>
+          <IconButton component="label">
+            <input type="file" hidden multiple accept="image/jpeg,image/png" onChange={handleFileChange} />
+            <AddAPhotoIcon />
+          </IconButton>
         </Grid>
 
         <Grid item xs={12}>
-          <FieldGroup
-            label="Quantity Available (Stock)"
-            name="quantityAvailable"
-            type="number"
-            value={formValues.quantityAvailable}
+          <Typography>Additional Info</Typography>
+          <TextField
+            name="additionalInfo"
+            multiline
+            rows={4}
+            value={formValues.additionalInfo}
             onChange={handleChange}
-          />
-        </Grid>
-
-        <Grid item xs={12}>
-          <FieldGroup
-            label="Price"
-            name="price"
-            value={formValues.price}
-            onChange={handleChange}
+            variant="outlined"
+            fullWidth
           />
         </Grid>
 
         <Grid item xs={12}>
-          <Box sx={{ marginY: '1%' }}>
-            <Typography>Additional Info</Typography>
-            <TextField
-              name="additionalInfo"
-              multiline
-              rows={4}
-              value={formValues.additionalInfo}
-              onChange={handleChange}
-              variant="outlined"
-              fullWidth
-              sx={{ bgcolor: '#e0e0e0', borderRadius: '4px' }}
-            />
-          </Box>
-        </Grid>
-
-        <Grid item xs={12}>
-          <FieldGroup
-            label="Your Name"
-            name="sellerName"
-            value={formValues.sellerName}
-            onChange={handleChange}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FieldGroup
-            label="Your Address"
-            name="address"
-            value={formValues.address}
-            onChange={handleChange}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FieldGroup
-            label="Your Email"
-            name="sellerEmail"
-            value={formValues.sellerEmail}
-            onChange={handleChange}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FieldGroup
-            type="number"
-            label="Your Phone Number"
-            name="sellerPhoneNumber"
-            value={formValues.sellerPhoneNumber}
-            onChange={handleChange}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FieldGroup
-            type="number"
-            label="Pin Code"
-            name="pinCode"
-            value={formValues.pinCode}
-            onChange={handleChange}
-          />
-        </Grid>
-
-        <Grid item xs={12}>
-          <Box sx={{ display: 'flex', justifyContent: 'center', marginY: '1%' }}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              sx={{ width: { sm: '50%', md: '30%' } }}
-            >
-              List Book
-            </Button>
-          </Box>
+          <Button type="submit" variant="contained" color="primary">
+            List Book
+          </Button>
         </Grid>
       </Grid>
     </Box>
   );
 };
 
-// FieldGroup component to handle common text field rendering
-const FieldGroup = ({ label, name, value, onChange, type = 'text' }) => (
-  <Box sx={{ marginY: '1%' }}>
-    <Typography variant="body1" sx={{ mb: 0.5 }}>
-      {label}
-    </Typography>
+const FieldGroup = ({ label, name, value, onChange, type = 'text', error }) => (
+  <Box>
+    <Typography variant="body1">{label}</Typography>
     <TextField
       name={name}
       value={value}
       onChange={onChange}
       variant="outlined"
       fullWidth
-      sx={{ bgcolor: '#e0e0e0', borderRadius: '4px' }}
+      error={!!error}
+      helperText={error || ''}
       type={type}
     />
   </Box>
 );
 
 export default Selling;
-

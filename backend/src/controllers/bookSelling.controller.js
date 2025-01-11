@@ -4,92 +4,106 @@ import { Book } from "../Models/bookSelling.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinaryfileUpload.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
-// /**
-//  * Controller to list a new book for sale.
-//  */
-// const bookSelling = asyncHandler(async (req, res) => {
-//   const { title, author, description, price, category } = req.body;
-
-//   console.log(req.body);
-
-//   // Validate required fields
-//   if (
-//     [title, author, description, price, category,genre].some(
-//       (field) => !field?.trim()
-//     )
-//   ) {
-//     throw new ApiError(400, "All fields are required");
-//   }
-
-//   // Check for uploaded files
-//   const files = req.files?.images;
-//   if (!files || files.length === 0) {
-//     throw new ApiError(400, "At least one book image is required");
-//   }
-
-//   // Upload images to Cloudinary
-//   const uploadedImages = await Promise.all(
-//     files.map((file) => uploadOnCloudinary(file.path))
-//   );
-
-//   // Extract image URLs
-//   const imageUrls = uploadedImages.map((upload) => upload.url);
-
-//   // Create the book in the database
-//   const book = await Book.create({
-//     title,
-//     author,
-//     description,
-//     price,
-//     category,
-//     genre,
-//     images: imageUrls,
-//     // seller: req.user._id, // Uncomment if user authentication is implemented
-//   });
-
-//   return res.status(201).json(
-//     new ApiResponse(201, "Book listed for sale successfully", {
-//       book,
-//     })
-//   );
-// });
-
+// Book selling controller function
 const bookSelling = asyncHandler(async (req, res) => {
-  const { title, author, description, price, seller_id, ISBN, genre, condition } = req.body;
+  // Destructuring request body to get necessary fields
+  const {
+    bookTitle,
+    author,
+    year,
+    ISBN,
+    bookType,
+    bookCondition,
+    quantityAvailable,
+    price,
+    additionalInfo,
+    sellerName,
+    address,
+    sellerEmail,
+    sellerPhoneNumber,
+    pinCode,
+    
+  } = req.body;
 
   console.log("Request Body:", req.body);
+  console.log('Uploaded files:', req.files);
 
-  if (
-    [title, author, description, price, seller_id, ISBN, genre, condition].some(
-      (field) => field?.trim() === ""
-    )
-  ) {
-    throw new ApiError(400, "All fields are required");
-  }
 
-  const imagesLocalPath = req.files?.images[0].path;
-
-  if (!imagesLocalPath) {
-    throw new ApiError(400, "At least one book image is required");
-  }
-
-  const BookImages = await uploadOnCloudinary(imagesLocalPath);
-
-  if (!BookImages) {
-    throw new ApiError(400, "Book image upload failed");
-  }
-
-  const newBook = await Book.create({
-    title,
+  if( [
+    bookTitle,
     author,
-    description,
-    price,
+    year,
     ISBN,
-    genre,
-    condition,
-    images: BookImages.url,
+    bookType,
+    bookCondition,
+    quantityAvailable,
+    price,
+    additionalInfo,
+    sellerName,
+    address,
+    sellerEmail,
+    sellerPhoneNumber,
+    pinCode,
+  ].some((field)=>field?.trim() === ""))
+  {
+    throw new ApiError(400,"all fields are required");
+  }
+  
+  // requiredFields.forEach((field, index) => {
+  //   console.log(`Field ${index + 1}:`, field);
+  // });
+  
+  // if (requiredFields.some(field => !field || field.trim() === "")) {
+  //   console.log("Error: Missing or empty fields detected.");
+  //   throw new ApiError(400, "All fields are required");
+  // }
+  
+  
+  // Handle image upload validation
+  const picturesLocalPath = req.files?.pictures[0].path;
+  if (!picturesLocalPath) {
+    throw new ApiError(400, "At least one book picture is required");
+    
+  }
+  const BookPictures = await uploadOnCloudinary(picturesLocalPath);
+
+  if(!BookPictures){
+    throw new ApiError(400,"Book imge upload failed ");
+  }
+
+ 
+
+
+  // Upload images to Cloudinary
+  // const uploadedImages = await Promise.all(
+  //   pictureLocalPath.map(async (file) => await uploadOnCloudinary(file.path))
+  // );
+
+  // Check if image upload was successful
+  // if (uploadedImages.some((picture) => !picture)) {
+  //   throw new ApiError(400, "Book image upload failed");
+  // }
+
+  // Create a new book listing
+  const newBook = await Book.create({
+    bookTitle,
+    author,
+    year,
+    ISBN,
+    bookType,
+    bookCondition,
+    quantityAvailable,
+    price,
+    additionalInfo,
+    sellerName,
+    address,
+    sellerEmail,
+    sellerPhoneNumber,
+    pinCode,
+    picture: BookPictures.url,// Store all image URLs
   });
 
+  // Respond with success message
   return res.status(201).json(new ApiResponse(200, "Book Listed for Sale Successfully"));
 });
- export { bookSelling };
+export { bookSelling };

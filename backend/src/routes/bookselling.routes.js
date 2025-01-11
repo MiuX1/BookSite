@@ -7,7 +7,7 @@ const router = Router();
 // Handle POST request for book selling with multiple file uploads
 router.route("/bookselling").post(
   upload.fields([
-    { name: "images", maxCount: 3 }, // Accept up to 3 files in the "images" field
+    { name: "pictures", maxCount: 4 }, // Accept up to 3 files in the "images" field
   ]),
   bookSelling
 );

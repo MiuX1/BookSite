@@ -2,15 +2,17 @@ import mongoose, { Schema } from "mongoose";
 
 const bookSchema = new Schema(
   {
-    BookTitle: {
+    bookTitle: {
       type: String,
       required: true,
       trim: true,
+      index:true,
     },
     author: {
       type: String,
       required: true,
       trim: true,
+      index:true,
     },
     year:{
         type:Number,
@@ -25,23 +27,50 @@ const bookSchema = new Schema(
       type:String,
       required:true,
     },
+    bookCondition: {
+      type: String,
+      enum: ["good", "fair","used"],
+      required: true,
+    },
+    quantityAvailable:{
+      type:Number,
+      required:true,
+    },
     price: {
       type: Number,
       required: true,
-    },
-    bookCondition: {
+    }, 
+    additionalInfo: {
       type: String,
-      enum: ["Good", "fair","used"],
-      required: true,
+      required: false,
     },
     genre: {
       type: String,
-      required: true,
+      required: false,
     },
-    description: {
-      type: String,
-      required: true,
-    },
+   sellerName:{
+    type: String,
+    required:true,
+    lowercase:true,
+   },
+   address:{
+    type :String,
+    required:true
+   },
+   sellerEmail:{
+    type:String,
+    required:true,
+
+   },
+   sellerPhoneNumber:{
+    type:Number,
+    
+
+   },
+   pinCode:{
+    type:Number,
+    required:true,
+   },
   
     seller_id: {
       type: mongoose.Schema.Types.ObjectId, // Reference to the user selling the book
@@ -53,7 +82,7 @@ const bookSchema = new Schema(
       enum: ["available", "sold"],
       default: "available",
     },
-    images: [
+    picture: [
       {
         type: String, // URLs or file paths to the book images
         required: false,
