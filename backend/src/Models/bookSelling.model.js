@@ -23,15 +23,16 @@ const bookSchema = new Schema(
     },
     bookType:{
       type:String,
+      required:true,
     },
     price: {
       type: Number,
       required: true,
     },
-    condition: {
+    bookCondition: {
       type: String,
-      enum: ["new", "used"],
-      required: false,
+      enum: ["Good", "fair","used"],
+      required: true,
     },
     genre: {
       type: String,
