@@ -25,8 +25,8 @@ const bookSelling = asyncHandler(async (req, res) => {
     
   } = req.body;
 
-  console.log("Request Body:", req.body);
-  console.log('Uploaded files:', req.files);
+  //console.log("Request Body:", req.body);
+  //console.log('Uploaded files:', req.files);
 
 
   if( [

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import {
   Container,
   Box,
@@ -12,10 +13,10 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
-import books from "../../src/data/home-paper.json";
 import buttonNames from "../../src/data/home-button.json";
 import HoverRating from "../../src/components/Rating/Rating";
 import { NavLink } from "react-router-dom";
+
 function Marketplace() {
   const [searchTitle, setSearchTitle] = useState("");
   const [searchAuthor, setSearchAuthor] = useState("");
@@ -27,6 +28,18 @@ function Marketplace() {
     bestSellers: false,
     discounted: false,
   });
+  const [books, setBooks] = useState([]); // State to store books fetched from API
+
+  useEffect(() => {
+    // Fetch books from the API
+    axios.get("http://localhost:8000/api/v1/marketplace/books")
+      .then(response => {
+        setBooks(response.data); // Store the fetched books in state
+      })
+      .catch(error => {
+        console.error("Error fetching books:", error);
+      });
+  }, []); // Empty dependency array to run the effect only once on mount
 
   const handleFilterChange = (event) => {
     setFilters({
@@ -37,10 +50,10 @@ function Marketplace() {
 
   const filteredBooks = books.filter((book) => {
     const matchesTitle =
-      searchTitle.toLowerCase() === "" || book.name.toLowerCase().includes(searchTitle.toLowerCase());
+      searchTitle.toLowerCase() === "" || book.bookTitle.toLowerCase().includes(searchTitle.toLowerCase());
     const matchesAuthor =
       searchAuthor.toLowerCase() === "" || book.author.toLowerCase().includes(searchAuthor.toLowerCase());
-    const matchesCategory = category === "" || book.category === category;
+    const matchesCategory = category === "" || book.bookType === category;
     const matchesFilters =
       (!filters.newArrivals || book.newArrival) &&
       (!filters.trending || book.trending) &&
@@ -172,8 +185,8 @@ function Marketplace() {
               >
                 <Box
                   component="img"
-                  src={book.img}
-                  alt={book.name}
+                  src={book.picture[0]} // Assuming the first image URL is used for display
+                  alt={book.bookTitle}
                   sx={{
                     height: "80%",
                     width: "100%",
@@ -182,7 +195,7 @@ function Marketplace() {
                   }}
                 />
                 <Typography variant="h6" component="h1" fontWeight={700} marginTop={2}>
-                  {book.name}
+                  {book.bookTitle}
                 </Typography>
                 <Typography variant="subtitle1" fontWeight={400}>
                   {book.author}
@@ -190,7 +203,7 @@ function Marketplace() {
                 <Typography variant="h5" fontWeight={700} paddingBottom={0.5}>
                   {book.price}
                 </Typography>
-                <HoverRating value={book.rating} readOnly={true} />
+                <HoverRating value={book.rating || 0} readOnly={true} />
                 <Button
                   component={NavLink} to="/product"
                   sx={{

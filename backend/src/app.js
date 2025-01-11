@@ -22,10 +22,12 @@ app.use(cookieParser());
 // routes
 import userRouter from "./routes/user.routes.js"
 import sellingRouter from "./routes/bookselling.routes.js"
+import marketplaceRouter from "./routes/marketplace.routes.js"
 
 //routes declaration
 app.use("/api/v1/users",userRouter)
 app.use("/api/v1/selling",sellingRouter)
+app.use("/api/v1/marketplace",marketplaceRouter)
 
 
 
