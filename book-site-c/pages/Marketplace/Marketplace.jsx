@@ -207,14 +207,14 @@ function Marketplace() {
                 <Button
                   component={NavLink} to="/product"
                   sx={{
-                    backgroundColor: "#1b77d2",
+                    backgroundColor: "#FF6F3C",
                     color: "whitesmoke",
                     border: "solid",
                     height: "auto",
                     width: "auto",
                     paddingY: 1,
                     "&:hover": {
-                      color: "#1b77d2",
+                      color: "#E65C2D ",
                     },
                   }}
                 >

@@ -33,7 +33,7 @@ function Home() {
           alignItems: 'center',
           justifyContent: 'center',
           background: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
-          url('../src/media/heroimg.jpg') 
+          url('../src/media/heroicon.png') 
           center/cover no-repeat`,
           padding: '5%',
           borderRadius: 2,
@@ -113,7 +113,7 @@ function Home() {
               padding: 2,
               width: '70%',
               '&:hover': {
-                backgroundColor: '#1b77d2',
+                backgroundColor: '#FF6F3C ',
                 color: 'whitesmoke',
               },
             }}
@@ -127,7 +127,7 @@ function Home() {
               width: '70%',
               padding: 2,
               '&:hover': {
-                backgroundColor: '#1b77d2',
+                backgroundColor: '#FF6F3C ',
                 color: 'whitesmoke',
               },
             }}
@@ -163,7 +163,8 @@ function Home() {
               key={index}
               onClick={() => handleCategorySelect(btn.name)}
               sx={{
-                bgcolor: '#1b77d2',
+               // bgcolor: '#1b77d2',
+               bgcolor: '#E65C2D   ',
                 flexGrow: '1',
                 padding: 2,
                 boxShadow: 2,
@@ -216,14 +217,14 @@ function Home() {
                 </Typography>
                 <Button
                   sx={{
-                    backgroundColor: '#1b77d2',
+                    backgroundColor: '#E65C2D ',
                     color: 'whitesmoke',
                     border: 'solid',
                     height: 'auto',
                     width: 'auto',
                     paddingY: 1,
                     '&:hover': {
-                      color: '#1b77d2',
+                      color: '#E65C2D ',
                     },
                   }}
                 >

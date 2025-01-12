@@ -29,7 +29,7 @@ const bookSchema = new Schema(
     },
     bookCondition: {
       type: String,
-      enum: ["good", "fair","used"],
+      enum: ["good", "fair","bad"],
       required: true,
     },
     quantityAvailable:{
