@@ -12,6 +12,7 @@ import Profile from '../pages/Profile/Profile.jsx'
 import Listings from '../pages/Profile/Listings.jsx'
 import Cart from '../pages/Profile/Cart.jsx'
 import './App.css'
+import Register from '../pages/Register.jsx'
 
 
 
@@ -34,6 +35,8 @@ const router = createBrowserRouter(
    </Route>
    
    <Route path='/login' element={<Login/>}></Route>
+   <Route path='/Register' element={<Register/>}></Route>
+
    
   </>
    

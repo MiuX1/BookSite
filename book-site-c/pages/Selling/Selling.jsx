@@ -347,7 +347,9 @@ const Selling = () => {
     try {
       const response = await axios.post('http://localhost:8000/api/v1/selling/bookselling', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
+
       });
+      
 
       console.log('Response status:', response.status);
 
