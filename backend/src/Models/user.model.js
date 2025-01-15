@@ -50,6 +50,8 @@ const userSchema = new Schema(
     refreshToken: {
             type: String
         },
+        booksListed: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Book' }]
+,
     // Wishlist (to be added later)
     // wishlist: [{
     //   type: mongoose.Schema.Types.ObjectId,

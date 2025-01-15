@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // Add axios for making API calls
 import {
   Container,
   Box,
@@ -20,39 +21,71 @@ import {
 } from '@mui/material';
 import { Email, Phone, Delete, AddCircleOutline } from '@mui/icons-material';
 import { NavLink } from 'react-router-dom';
+
 const Profile = () => {
   const [editOpen, setEditOpen] = useState(false);
   const [profileData, setProfileData] = useState({
-    name: 'John Doe',
-    bio: 'Avid Reader & Book Reviewer',
-    location: 'Bay Area, San Francisco, CA',
-    email: 'fip@jukmuh.al',
-    phone: '(239) 816-9029',
+    fullName: '',
+    bio: '',
+    location: '',
+    email: '',
+    phone: '',
   });
+  const [bookListed, setBookListed] = useState([]);
 
-  const [bookListed, setBookListed] = useState([
-    { id: 1, title: '1984', author: 'George Orwell', price: '$14.00', image: 'https://via.placeholder.com/150', status: 'Shipped' },
-    { id: 2, title: 'To Kill a Mockingbird', author: 'Harper Lee', price: '$12.49', image: 'https://via.placeholder.com/150', status: 'Processing' },
-  ]);
+  // Fetch user profile and books listed when the component mounts
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/v1/profile/userprofile');
+        setProfileData(response.data);
+      } catch (error) {
+        console.error('Error fetching user profile:', error);
+      }
+    };
+
+    const fetchBooksListed = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/v1/profile/listedbooks');
+        setBookListed(response.data);
+      } catch (error) {
+        console.error('Error fetching listed books:', error);
+      }
+    };
+
+    fetchUserProfile();
+    fetchBooksListed();
+  }, []);
 
   const handleEditOpen = () => setEditOpen(true);
   const handleEditClose = () => setEditOpen(false);
 
   const handleProfileChange = (e) => {
-    setProfileData({ ...profileData, [e.target.name]: e.target.value });
+    setProfileData({ ...profileData, [e.target.fullName]: e.target.value });
   };
 
-  const handleProfileSave = () => {
-    handleEditClose();
+  const handleProfileSave = async () => {
+    try {
+      const response = await axios.put('http://localhost:8000/api/v1/profile/updateprofile', profileData); // Make API request to update profile
+      setProfileData(response.data); // Update the local state with the updated profile
+      handleEditClose();
+    } catch (error) {
+      console.error('Error saving profile:', error);
+    }
   };
 
-  const handleRemoveBookListed = (id) => {
-    setBookListed(bookListed.filter(book => book.id !== id));
+  const handleRemoveBookListed = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8000/api/v1/profile/delete/${id}`); // API call to remove book
+      setBookListed(bookListed.filter(book => book.id !== id)); // Remove from local state
+    } catch (error) {
+      console.error('Error removing book:', error);
+    }
   };
 
   return (
     <Container maxWidth="lg">
-      <Box sx={{ mt: 4,mb:2, bgcolor: '#f4f6f9', p: 3 }}>
+      <Box sx={{ mt: 4, mb: 2, bgcolor: '#f4f6f9', p: 3 }}>
         <Grid container spacing={4}>
           {/* Left Panel */}
           <Grid item xs={12} md={4}>
@@ -62,7 +95,7 @@ const Profile = () => {
                 sx={{ width: 120, height: 120, margin: '0 auto' }}
               />
               <Typography variant="h6" sx={{ mt: 2 }}>
-                {profileData.name}
+                {profileData.fullName}
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 {profileData.bio}
@@ -128,7 +161,7 @@ const Profile = () => {
             {/* List a Book Section */}
             <Paper elevation={3} sx={{ p: 2, textAlign: 'center', mb: 2 }}>
               <Button 
-              component={NavLink} to="/selling"
+              component={NavLink} to="/Selling"
               variant="contained" color="primary" startIcon={<AddCircleOutline />} fullWidth>
                 List a Book
               </Button>
@@ -144,12 +177,12 @@ const Profile = () => {
           <TextField
             autoFocus
             margin="dense"
-            name="name"
+            name="fullName"
             label="Full Name"
             type="text"
             fullWidth
             variant="outlined"
-            value={profileData.name}
+            value={profileData.fullName}
             onChange={handleProfileChange}
           />
           <TextField

@@ -77,7 +77,7 @@ const bookSchema = new Schema(
     seller_id: {
       type: mongoose.Schema.Types.ObjectId, // Reference to the user selling the book
       ref: "User",
-      required: false,
+      required: true,
     },
     status: {
       type: String,
