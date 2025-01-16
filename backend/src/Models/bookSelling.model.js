@@ -74,10 +74,10 @@ const bookSchema = new Schema(
     required:true,
    },
   
-    seller_id: {
+    sellerId : {
       type: mongoose.Schema.Types.ObjectId, // Reference to the user selling the book
       ref: "User",
-      required: true,
+     
     },
     status: {
       type: String,

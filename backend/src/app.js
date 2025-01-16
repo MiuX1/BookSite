@@ -5,9 +5,20 @@ import cookieParser from "cookie-parser";
 const app = express();
 
 // CORS Configuration
-app.use(cors({
-    origin: process.env.CORS_ORIGIN || "http://localhost:5173", // Fallback if CORS_ORIGIN is not defined
-}));
+// app.use(cors({
+//     origin: process.env.CORS_ORIGIN || "http://localhost:5173",
+//     //  // Fallback if CORS_ORIGIN is not defined
+//     credentials: true,
+// }));
+
+
+
+const corsOptions = {
+  origin: 'http://localhost:5173', // Specify the exact frontend origin (React app's URL)
+  credentials: true, // Allow credentials (cookies)
+};
+
+app.use(cors(corsOptions));
 
 // Parse JSON and URL-encoded data
 app.use(express.json({ limit: "16kb" }));

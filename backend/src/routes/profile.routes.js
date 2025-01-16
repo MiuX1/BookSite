@@ -1,5 +1,9 @@
 import express from "express";
-import { getUserProfile, updateUserProfile, getBooksListed, removeBookFromListed } from "../controllers/profile.controller.js";
+import { getUserProfile,
+     updateUserProfile, 
+     getBooksListed,
+  removeBookFromListed 
+    } from "../controllers/profile.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 const router = express.Router();

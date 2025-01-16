@@ -14,6 +14,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import StoreIcon from "@mui/icons-material/Store";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -78,6 +79,32 @@ export default function Header({ sx }) {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  // Logout function
+  const handleLogout = async () => {
+    try {
+      // API call to backend to invalidate the tokens
+      await axios.post(
+        "http://localhost:8000/api/v1/users/logout",
+        {}, // Include body if required
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+
+      // Clear tokens from localStorage
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+
+      // Redirect the user to the login page
+      window.location.href = "/login";
+    } catch (error) {
+      console.error("Logout failed:", error);
+      alert("Error logging out. Please try again.");
+    }
+  };
+
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -95,15 +122,25 @@ export default function Header({ sx }) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem component={NavLink} to="/profile" onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem component={NavLink} to="/logout" onClick={handleMenuClose}>logout</MenuItem>
-      {/* <MenuItem onClick={handleMenuClose}>Dashboard</MenuItem> */}
+      <MenuItem component={NavLink} to="/profile" onClick={handleMenuClose}>
+        Profile
+      </MenuItem>
+      <MenuItem component={NavLink} to="/selling" onClick={handleMenuClose}>
+        Sell a book
+      </MenuItem>
+      <MenuItem
+        onClick={() => {
+          handleMenuClose(); // Close the menu
+          handleLogout(); // Execute logout logic
+        }}
+      >
+        Logout
+      </MenuItem>
     </Menu>
   );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
-    //mobile view
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
@@ -119,10 +156,9 @@ export default function Header({ sx }) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-
       <Box sx={{ paddingRight: 2 }}>
         <MenuItem component={NavLink} to="/">
-          <IconButton size="large" color="inherit" >
+          <IconButton size="large" color="inherit">
             <HomeIcon />
           </IconButton>
           <p>Home</p>
@@ -150,10 +186,11 @@ export default function Header({ sx }) {
   );
 
   return (
-    // desktop view
-    <Box sx={{ flexGrow: 1, 
-      // paddingY: { xs: "7%", sm: "4%", md: "1%" } 
-    }}>
+    <Box
+      sx={{
+        flexGrow: 1,
+      }}
+    >
       <AppBar position="static" sx={{ bgcolor: "#BF5A36", ...sx }}>
         <Toolbar>
           <Typography
@@ -180,7 +217,12 @@ export default function Header({ sx }) {
             <IconButton size="large" color="inherit" component={NavLink} to="/">
               <HomeIcon />
             </IconButton>
-            <IconButton size="large" color="inherit" component={NavLink} to="/marketplace">
+            <IconButton
+              size="large"
+              color="inherit"
+              component={NavLink}
+              to="/marketplace"
+            >
               <StoreIcon />
             </IconButton>
             <IconButton

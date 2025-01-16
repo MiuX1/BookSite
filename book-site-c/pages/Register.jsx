@@ -243,6 +243,7 @@ export default function Register() {
   const [fullName, setfullName] = useState('');
   const [phone, setPhone] = useState('');
   const [bio, setBio] = useState('');
+ 
   const [location, setLocation] = useState('');
   const [isSeller, setIsSeller] = useState(false);
   const [avatar, setAvatar] = useState(null); // State for avatar
@@ -272,7 +273,7 @@ export default function Register() {
         },
       });
 
-      window.location.href = '/profile';
+      window.location.href = '/login';
     } catch (err) {
       setError('Error registering user');
     }
